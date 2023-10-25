@@ -9,10 +9,25 @@ public class FilteringApples {
 
     public static void main(String[] args){
         List<Apple> inventory = Arrays.asList(
-                new Apple(80, "green"),
-                new Apple(155, "green"),
-                new Apple(120, "red")
+                new Apple(80, "Green"),
+                new Apple(155, "Green"),
+                new Apple(120, "Red")
         );
+        List<Apple> greenApples = filterApples(inventory, FilteringApples::isGreenApple);
+        System.out.println(greenApples);
+
+        List<Apple> heavyApples = filterApples(inventory, FilteringApples::isHeavyApple);
+        System.out.println(heavyApples);
+
+        List<Apple> greenApples2 = filterApples(inventory, (Apple apple) -> "Green".equals(apple.getColor()));
+        System.out.println(greenApples2);
+
+        List<Apple> heavyApples2 = filterApples(inventory, (Apple apple) -> apple.getWeight() > 150);
+        System.out.println(heavyApples2);
+
+        List<Apple> weirdApple = filterApples(
+                inventory, (Apple apple) -> apple.getWeight() <= 80 || "Red".equals(apple.getColor()));
+        System.out.println(weirdApple);
     }
 
     public static List<Apple> filterGreenApples(List<Apple> inventory){
