@@ -1,5 +1,8 @@
 package ch02;
 
+import model.Apple;
+import model.Color;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +12,8 @@ public class FilteringApples {
         List<Apple> inventory = Arrays.asList(
                 new Apple(80, Color.GREEN),
                 new Apple(155, Color.GREEN),
-                new Apple(120, Color.RED));
+                new Apple(120, Color.RED),
+                new Apple(180, Color.RED));
 
         List<Apple> greenApples = filterGreenApples(inventory);
         System.out.println(greenApples);
@@ -19,6 +23,15 @@ public class FilteringApples {
 
         List<Apple> weightApples = filterApplesByWeight(inventory, 120);
         System.out.println(weightApples);
+
+        List<Apple> greeApples =  filterApples(inventory, Color.GREEN, 0, true);
+        System.out.println(greeApples);
+
+        List<Apple> heavyApples = filterApples(inventory, null, 110, false);
+        System.out.println(heavyApples);
+
+        List<Apple> appleRedAndHeavy = filterApples(inventory, new AppleRedAndHeavy());
+        System.out.println(appleRedAndHeavy);
     }
 
     // Primer intento de manejar los requisitos: filtrar las manzanas verdes
@@ -60,42 +73,30 @@ public class FilteringApples {
         return result;
     }
 
-    enum Color {
-        RED,
-        GREEN
+    /*
+     * 3er intento: filtro con cada atributo que podemos pensar
+     */
+    public static List<Apple> filterApples(List<Apple> inventory, Color color, int weight, boolean flag){
+        List<Apple> result = new ArrayList<Apple>();
+        for(Apple apple : inventory){
+            // una forma horrible de seleccionar color o peso
+            if((flag && apple.getColor().equals(color)) || (!flag && apple.getWeight() > weight)){
+                result.add(apple);
+            }
+        }
+        return result;
     }
 
-    public static class Apple {
-
-        private int weight = 0;
-        private Color color;
-
-        public Apple(int weight, Color color) {
-            this.weight = weight;
-            this.color = color;
+    /*
+     * 4To Intento: Filtro por criterio abstracto
+     */
+    public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate predicate){
+        List<Apple> result = new ArrayList<>();
+        for(Apple apple : inventory){
+            if(predicate.test(apple)){
+                result.add(apple);
+            }
         }
-
-        public int getWeight() {
-            return weight;
-        }
-
-        public void setWeight(int weight) {
-            this.weight = weight;
-        }
-
-        public Color getColor() {
-            return color;
-        }
-
-        public void setColor(Color color) {
-            this.color = color;
-        }
-
-        @SuppressWarnings("boxing")
-        @Override
-        public String toString() {
-            return String.format("Apple{color='%s', weight=%d}", color, weight);
-        }
-
+        return result;
     }
 }
