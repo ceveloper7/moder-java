@@ -32,6 +32,8 @@ public class FilteringApples {
 
         List<Apple> appleRedAndHeavy = filterApples(inventory, new AppleRedAndHeavy());
         System.out.println(appleRedAndHeavy);
+
+        filterApples(inventory, new AppleFancyFormatter());
     }
 
     // Primer intento de manejar los requisitos: filtrar las manzanas verdes
@@ -98,5 +100,12 @@ public class FilteringApples {
             }
         }
         return result;
+    }
+
+    public static void filterApples(List<Apple> inventory, AppleFormatter formatter){
+        for(Apple apple : inventory){
+            String output = formatter.accept(apple);
+            System.out.println(output);
+        }
     }
 }
