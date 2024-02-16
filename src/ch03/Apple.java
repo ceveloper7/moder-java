@@ -1,15 +1,24 @@
 package ch03;
 
 public class Apple {
-
+    private String name;
     private int weight = 0;
     private Color color;
 
     public Apple(){}
 
-    public Apple(int weight, Color color) {
+    public Apple(String name, int weight, Color color) {
+        this.name = name;
         this.weight = weight;
         this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getWeight() {
@@ -31,7 +40,7 @@ public class Apple {
     @SuppressWarnings("boxing")
     @Override
     public String toString() {
-        return String.format("Apple{color=%s, weight=%d}", color, weight);
+        return String.format("Apple{name=%s, color=%s, weight=%d}", name, color, weight);
     }
 
 }
