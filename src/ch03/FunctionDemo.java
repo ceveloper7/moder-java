@@ -13,12 +13,24 @@ public class FunctionDemo {
         inventory.add(new Apple("Red Delicious Apple", 85, Color.GREEN));
         inventory.add(new Apple("Royal Gala Apple", 75, Color.YELLOW));
 
-        System.out.println(countInventory(inventory));
+        List<Integer> appleWeights = getAppleWeight(inventory, (apple -> apple.getWeight()));
+        for(Integer i : appleWeights){
+            System.out.println(i);
+        }
+        System.out.println("Apple total: " + countInventory(inventory));
     }
 
     public static long countInventory(List<Apple> inventory){
         long stock = 0;
        return stock = inventory.stream()
                .count();
+    }
+
+    public static List<Integer> getAppleWeight(List<Apple> inventory, Function<Apple, Integer> w){
+        List<Integer> result = new ArrayList<>();
+        for(Apple apple : inventory){
+            result.add(w.apply(apple));
+        }
+        return result;
     }
 }
