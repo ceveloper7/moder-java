@@ -13,7 +13,7 @@ public class FunctionDemo {
         inventory.add(new Apple("Red Delicious Apple", 85, Color.GREEN));
         inventory.add(new Apple("Royal Gala Apple", 75, Color.YELLOW));
 
-        List<Integer> appleWeights = getAppleWeight(inventory, (apple -> apple.getWeight()));
+        List<Integer> appleWeights = getAppleWeight(inventory, (Apple::getWeight));
         for(Integer i : appleWeights){
             System.out.println(i);
         }

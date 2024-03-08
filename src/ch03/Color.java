@@ -1,6 +1,6 @@
 package ch03;
 
-enum Color {
+public enum Color {
     RED,
     GREEN,
     YELLOW
