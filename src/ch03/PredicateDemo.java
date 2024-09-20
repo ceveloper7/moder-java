@@ -14,18 +14,19 @@ public class PredicateDemo {
         inventory.add(new Apple("Red Delicious Apple", 85, Color.GREEN));
         inventory.add(new Apple("Royal Gala Apple", 75, Color.YELLOW));
 
-        System.out.println(predicateUsingOrAndNegate(inventory));
+        //System.out.println(predicateUsingOrAndNegate(inventory));
         //System.out.println(predicateUsingOr(inventory));
         //System.out.println(predicateUsingAnd(inventory));
         //System.out.println(complexFilter(inventory));
         //System.out.println(multipleFilters(inventory));
+
+        // proporcionamos la implementacion del metodo abstracto test de la interface funcional ApplePredicate
+        // las lambdas solo pueden usarse en el contexto de una interface funcional
         //List<Apple> apples = filter(inventory, (apple -> apple.getColor() == Color.YELLOW));
         //List<Apple> apples = filter(inventory, (apple)-> apple.getName().startsWith("G"));
         //System.out.println(apples);
 
     }
-
-
 
     public static List<Apple> predicateUsingOrAndNegate(List<Apple> inventoy){
         Predicate<Apple> predicate1 = (apple -> apple.getColor()==Color.GREEN);

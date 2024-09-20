@@ -10,6 +10,7 @@ public class ExecuteAround {
         System.out.println(result);
 
         System.out.println("--------");
+        // pasamos la implementacion del metodo abstracto process de la interface funcional BufferedReaderProcessor
         processFile((BufferedReader br)->{
             String line = br.readLine();
             while(line != null){
