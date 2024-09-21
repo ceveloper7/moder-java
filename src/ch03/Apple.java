@@ -9,6 +9,11 @@ public class Apple {
         this.name = name;
     }
 
+    public Apple(String name, int weight){
+        this.name = name;
+        this.weight = weight;
+    }
+
     public Apple(String name, int weight, Color color) {
         this.name = name;
         this.weight = weight;

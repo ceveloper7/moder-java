@@ -32,7 +32,33 @@ public class BFunctionInterfaceWithPrimitive {
         consumer.accept(value);
     }
 
-    private static List<String> comparing(List<String> list, ){}
+    private static List<String> sortingList(List<String> list){
+        List<String> sortedList = new ArrayList<>(list);
+        // reference method al metodo de instancia compareToIgnoreCase
+        sortedList.sort(String::compareToIgnoreCase);
+        return sortedList;
+    }
+
+    // method reference to constructor
+    private static Apple createAppleV1(String name, Function<String, Apple> f){
+        return f.apply(name);
+    }
+    
+    private static List<Apple> mapCreateApple(List<String> appleNames, Function<String, Apple> f){
+        List<Apple> apples = new ArrayList<>();
+        for(String name : appleNames){
+            apples.add(f.apply(name));
+        }
+        return apples;
+    }
+
+    private static Apple createAppleV2(String name, int weight, BiFunction<String, Integer, Apple> f){
+        return f.apply(name, weight);
+    }
+
+    private static Apple createAppleV3(String name, int weight, Color color, TriFunction<String, Integer, Color, Apple> f){
+        return f.apply(name, weight, color);
+    }
 
 
     public static void main(String[] args) {
@@ -48,10 +74,24 @@ public class BFunctionInterfaceWithPrimitive {
 
         valueToPrint = 500;
         // usando method reference
+
         printValue(valueToPrint, System.out::println);
 
         List<String> str = Arrays.asList("a","b","A","B");
-        str.sort(String::compareToIgnoreCase);
-        System.out.println(str);
+        System.out.println(sortingList(str));;
+
+        Apple apple = createAppleV1("apple", Apple::new);
+        System.out.println(apple);
+
+        List<String> names = Arrays.asList("apple1", "apple2", "apple3");
+        List<Apple> apples = mapCreateApple(names, Apple::new);
+        System.out.println(apples);
+
+        Apple apple2 = createAppleV2("Manzana del campo", 55, Apple::new);
+        apple2.setColor(Color.RED);
+        System.out.println(apple2);
+
+        Apple apple3 = createAppleV3("Manzana del rio", 85, Color.GREEN, Apple::new);
+        System.out.println(apple3);
     }
 }
