@@ -5,7 +5,9 @@ public class Apple {
     private int weight = 0;
     private Color color;
 
-    public Apple(){}
+    public Apple(String name){
+        this.name = name;
+    }
 
     public Apple(String name, int weight, Color color) {
         this.name = name;
