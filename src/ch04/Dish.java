@@ -2,6 +2,7 @@ package ch04;
 
 import java.util.Arrays;
 import java.util.List;
+
 public class Dish {
     private final String name;
     private final boolean vegetarian;
