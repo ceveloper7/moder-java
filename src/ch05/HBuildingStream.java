@@ -94,7 +94,7 @@ public class HBuildingStream {
      * Se necesita una lambda de tipo Supplier<T>
      */
     private static void generateRandomNums(){
-        Stream.generate(Math::random)
+        Stream.generate(()-> (int) (Math.random() * 10000000))
                 .limit(5)
                 .forEach(System.out::println);
     }

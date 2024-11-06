@@ -25,7 +25,7 @@ import java.util.Optional;
  * de operaciones se llaman operaciones de corto circuito.
  */
 public class DStreamFindingMatching {
-
+2222222
     private static void isThereVegetarianMenu(List<Dish> menu){
         if(menu.stream().anyMatch(Dish::isVegetarian)){
             System.out.println("The menu is vegetarian friendly");
